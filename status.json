@@ -1,14 +1,17 @@
 {
-  "updatedAt": "2026-07-08T07:48:00+09:00",
+  "updatedAt": "2026-07-08T08:15:00+09:00",
   "alert": null,
   "kmong": { "live": 0, "pending": 8, "inquiries": 0, "sales": 0 },
-  "upwork": { "proposals": 2, "responses": 0, "connects": 70, "note": "IDV 인증 완료" },
+  "upwork": { "proposals": 2, "responses": 0, "connects": 70, "note": "IDV 완료" },
   "gumroad": { "products": 10, "sales": 0, "revenue": 0 },
-  "shopify": { "stage": "개발 완료", "note": "배포·심사 준비 중 (Stocky 종료 8/31 타깃)" },
+  "shopify": { "stage": "프로덕션 배포됨", "note": "restockos.onrender.com 라이브 · 검증 통과 · 버그 4건 수정" },
   "changes": [
+    { "at": "2026-07-08 08:15", "text": "Shopify 앱 프로덕션 배포 완료 (Render) + 개발스토어 검증 통과 — 내비게이션·대시보드·4분할 정상 확증" },
+    { "at": "2026-07-08 07:55", "text": "핵심 로직 버그 수정: 'Reorder now' 상태가 영구 공집합이던 문제 → 이제 정상 분류 (프로덕션 확인)" },
+    { "at": "2026-07-08 07:46", "text": "GDPR 웹훅 3종·개인정보처리방침·read-only 스코프·유닛테스트 18개 정비 (심사 요건)" },
+    { "at": "2026-07-08 07:30", "text": "GitHub 연결 + Render 무료 배포 파이프라인 구축 (코드 푸시 시 자동 재배포)" },
     { "at": "2026-07-07 12:10", "text": "Upwork 제안 2호 제출 — Brain Gateway AI 오케스트레이션 ($39/hr, $326K 지출 클라이언트)" },
     { "at": "2026-07-07 11:30", "text": "Upwork IDV 신원인증 완료 — 제안 활동 재개" },
-    { "at": "2026-07-06", "text": "크몽 서비스 8건 등록 완료 (심사 대기, 영업일 7일)" },
-    { "at": "2026-07-06", "text": "Shopify RestockOS 개발 스토어 검증 통과 (버그 0)" }
+    { "at": "2026-07-06", "text": "크몽 서비스 8건 등록 완료 (심사 대기, 영업일 7일)" }
   ]
 }
