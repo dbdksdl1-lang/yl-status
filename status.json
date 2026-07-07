@@ -1,0 +1,14 @@
+{
+  "updatedAt": "2026-07-07T12:30:00+09:00",
+  "alert": null,
+  "kmong": { "live": 0, "pending": 8, "inquiries": 0, "sales": 0 },
+  "upwork": { "proposals": 2, "responses": 0, "connects": 70, "note": "IDV 인증 완료" },
+  "gumroad": { "products": 10, "sales": 0, "revenue": 0 },
+  "shopify": { "stage": "개발 완료", "note": "배포·심사 준비 중 (Stocky 종료 8/31 타깃)" },
+  "changes": [
+    { "at": "2026-07-07 12:10", "text": "Upwork 제안 2호 제출 — Brain Gateway AI 오케스트레이션 ($39/hr, $326K 지출 클라이언트)" },
+    { "at": "2026-07-07 11:30", "text": "Upwork IDV 신원인증 완료 — 제안 활동 재개" },
+    { "at": "2026-07-06", "text": "크몽 서비스 8건 등록 완료 (심사 대기, 영업일 7일)" },
+    { "at": "2026-07-06", "text": "Shopify RestockOS 개발 스토어 검증 통과 (버그 0)" }
+  ]
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0F172A">
+<link rel="manifest" href="manifest.json">
+<title>상품 현황판</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: -apple-system, "Segoe UI", "Malgun Gothic", sans-serif; background: #0F172A; color: #E2E8F0; padding: 16px; padding-top: max(16px, env(safe-area-inset-top)); }
+  h1 { font-size: 18px; display: flex; justify-content: space-between; align-items: baseline; }
+  #updated { font-size: 12px; color: #64748B; font-weight: normal; }
+  .stale { color: #F59E0B !important; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .card { background: #1E293B; border-radius: 14px; padding: 14px; }
+  .card h2 { font-size: 13px; color: #94A3B8; display: flex; justify-content: space-between; }
+  .big { font-size: 26px; font-weight: 700; margin-top: 6px; }
+  .sub { font-size: 12px; color: #94A3B8; margin-top: 4px; line-height: 1.5; }
+  .money { color: #34D399; }
+  .alert { background: #7C2D12; border-radius: 14px; padding: 12px 14px; margin-top: 14px; font-size: 14px; display: none; }
+  .changes { margin-top: 16px; }
+  .changes h2 { font-size: 14px; color: #94A3B8; margin-bottom: 8px; }
+  .changes li { list-style: none; background: #1E293B; border-radius: 10px; padding: 10px 12px; font-size: 13px; margin-bottom: 6px; line-height: 1.5; }
+  .changes time { color: #64748B; font-size: 11px; display: block; }
+  footer { margin-top: 20px; font-size: 11px; color: #475569; text-align: center; }
+</style>
+</head>
+<body>
+<h1>상품 현황판 <span id="updated">로딩…</span></h1>
+<div class="alert" id="alert"></div>
+<div class="grid" id="cards"></div>
+<div class="changes"><h2>최근 변화</h2><ul id="changes"></ul></div>
+<footer>1시간마다 자동 갱신 · 당겨서 새로고침</footer>
+<script>
+async function load() {
+  const res = await fetch('status.json?t=' + Date.now());
+  const s = await res.json();
+  const upd = new Date(s.updatedAt);
+  const mins = Math.round((Date.now() - upd.getTime()) / 60000);
+  const el = document.getElementById('updated');
+  el.textContent = mins < 60 ? mins + '분 전 갱신' : Math.round(mins/60) + '시간 전 갱신';
+  if (mins > 150) el.classList.add('stale');
+
+  if (s.alert) {
+    const a = document.getElementById('alert');
+    a.style.display = 'block';
+    a.textContent = '⚠️ ' + s.alert;
+  }
+
+  const cards = [
+    { title: '크몽', big: s.kmong.live + '건 판매중', sub: '심사중 ' + s.kmong.pending + ' · 문의 ' + s.kmong.inquiries + ' · 판매 ' + s.kmong.sales + '건' },
+    { title: 'Upwork', big: s.upwork.responses + ' 응답', sub: '제안 ' + s.upwork.proposals + '건 · 커넥츠 ' + s.upwork.connects + (s.upwork.note ? ' · ' + s.upwork.note : '') },
+    { title: 'Gumroad', big: s.gumroad.sales + '건 판매', sub: '상품 ' + s.gumroad.products + '개 · 수익 $' + s.gumroad.revenue },
+    { title: 'Shopify 앱', big: s.shopify.stage, sub: s.shopify.note || '' },
+  ];
+  document.getElementById('cards').innerHTML = cards.map(c =>
+    '<div class="card"><h2>' + c.title + '</h2><div class="big">' + c.big + '</div><div class="sub">' + c.sub + '</div></div>'
+  ).join('');
+
+  document.getElementById('changes').innerHTML = (s.changes || []).slice(0, 15).map(c =>
+    '<li><time>' + c.at + '</time>' + c.text + '</li>'
+  ).join('') || '<li>아직 기록된 변화가 없습니다</li>';
+}
+load().catch(e => document.getElementById('updated').textContent = '로드 실패');
+</script>
+</body>
+</html>
