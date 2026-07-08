@@ -1,11 +1,13 @@
 {
-  "updatedAt": "2026-07-08T19:27:00+09:00",
-  "alert": null,
+  "updatedAt": "2026-07-08T19:40:00+09:00",
+  "alert": "결정 대기 3건 (형 승인 필요, 아래 참고) — 앱 개발·검증 자체는 완료",
   "kmong": { "live": 0, "pending": 8, "inquiries": 0, "sales": 0 },
   "upwork": { "proposals": 2, "responses": 0, "connects": 70, "note": "IDV 완료" },
   "gumroad": { "products": 10, "sales": 0, "revenue": 0 },
-  "shopify": { "stage": "프로덕션 배포됨", "note": "restockos.onrender.com 라이브 · 검증 통과 · 버그 4건 수정" },
+  "shopify": { "stage": "프로덕션 배포됨, 결정 대기", "note": "①DB영속화(Postgres, 비용) ②App Store 공개배포 선택 ③Billing설정 — 전부 승인 필요해 대기 중" },
   "changes": [
+    { "at": "2026-07-08 19:40", "text": "⚠️ 결정 필요: Postgres DB(비용발생) / App Store Public distribution 선택(되돌리기 어려움) / Billing — 안전장치가 자동승인 막음, 형 확인 후 진행" },
+    { "at": "2026-07-08 19:00", "text": "현황판 갱신 주기 20분으로 단축, 마이그레이션 가이드 작성" },
     { "at": "2026-07-08 08:15", "text": "Shopify 앱 프로덕션 배포 완료 (Render) + 개발스토어 검증 통과 — 내비게이션·대시보드·4분할 정상 확증" },
     { "at": "2026-07-08 07:55", "text": "핵심 로직 버그 수정: 'Reorder now' 상태가 영구 공집합이던 문제 → 이제 정상 분류 (프로덕션 확인)" },
     { "at": "2026-07-08 07:46", "text": "GDPR 웹훅 3종·개인정보처리방침·read-only 스코프·유닛테스트 18개 정비 (심사 요건)" },
