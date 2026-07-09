@@ -1,32 +1,36 @@
 {
-  "updatedAt": "2026-07-09T18:15:00+09:00",
-  "alert": "RestockOS 심사 제출 체크리스트 5개 항목 — 형 확인/클릭 필요 (아래 userTodos 참고)",
+  "updatedAt": "2026-07-09T18:45:00+09:00",
+  "alert": "🚨 Etsy 상점이 Vacation Mode로 일시정지됨 — 신원/사업자 정보 확인 필요, 지금 신규 주문 불가 (형 본인 인증이라 AI 대행 불가). 그 외 RestockOS 심사 제출 체크리스트도 대기 중",
   "userTodos": [
+    { "text": "🚨 Etsy 상점 확인/인증 — Etsy 설정에서 '판매자/사업자 정보 확인' 요청 처리해야 상점 정지 풀림 (신원 확인이라 AI가 대신 못 함)", "priority": "high" },
     { "text": "RestockOS 심사 제출: Partners→restockos→배포→제출 관리 → 언어선택(영어)/보호된 고객데이터(사용 안 함 체크)/자동검사 실행/개인맞춤 요구사항 선택 → 마지막 '검토를 위해 제출' 클릭. 상세 절차는 STATUS.md 맨 위 참고", "priority": "high" },
     { "text": "업로드 대기함(_업로드_대기함) 완성 상품 14개 — 상품당 1~2분 드래그만 하면 바로 판매 시작 가능(README-업로드방법.md 참고), 시간 날 때 몰아서", "priority": "high" },
     { "text": "Upwork 신규 Invite 1건(PP019, 모바일 AI 라벨링) — 우리 포지셔닝과 안 맞아 보류 중, 지원 여부 판단 필요", "priority": "low" }
   ],
   "aiInProgress": [
     "RestockOS 기능 3종 출시·실사용 검증 완료: 바코드/가격 라벨 인쇄, 번들·키트 수요예측, 동기화 실패 알림",
-    "안드로이드 'S펜 스크롤 필기 오버레이 앱' 아이디어 조사 완료 — 기술적으로 가능하나 이미 다운로드 100만+ 경쟁앱 있는 성숙 시장으로 확인, 별도 안드로이드 개발환경 필요해 보류 권고",
-    "채널별 상태 상시 점검 중 (Gumroad 브라우저 이슈 해결 확인, Upwork/크몽 변화 없음)"
+    "현황판 전면 개편 — 모든 채널(크몽/Upwork/Gumroad/Etsy/Shopify/단타자동매매) 한 화면 통합 + 형이 할 일/AI 진행상황 실시간 연동",
+    "Etsy 상점 정지 발견 — 원인 확인 완료(신원인증 필요), 채널별 상태 상시 점검 중"
   ],
   "kmong": { "live": 0, "pending": 8, "inquiries": 0, "sales": 0 },
   "upwork": { "proposals": 2, "responses": 0, "connects": 70, "note": "IDV 완료, Invite 1건(PP019) 보류 중" },
   "gumroad": { "products": 10, "sales": 0, "revenue": 0 },
-  "shopify": { "stage": "기능 3종 추가 배포 완료, 심사 제출 직전", "note": "라벨 인쇄·번들예측·동기화알림 출시. Billing 이미 설정됨. 남은 건 심사 제출 체크리스트(형 클릭 필요) — userTodos 참고" },
+  "etsy": { "active": 2, "draft": 8, "expired": 0, "shopStatus": "일시정지(Vacation Mode)", "note": "SoloSellerToolkit — 신원/사업자 확인 필요해 신규 주문 불가" },
+  "shopify": { "stage": "기능 3종 추가 배포 완료, 심사 제출 직전", "note": "라벨 인쇄·번들예측·동기화알림 출시. Billing 이미 설정됨. 남은 건 심사 제출 체크리스트(형 클릭 필요)" },
+  "dayTrading": { "capital": 9900812, "initialCapital": 10000000, "pnlPct": -0.99, "tradesToday": 0, "marketRegime": "코스피·코스닥 둘 다 하락 국면", "halted": false, "note": "모의투자(페이퍼트레이딩), 실거래 아님" },
+  "uploadBacklog": { "count": 14, "note": "완성·검증 완료, 드래그만 하면 판매 시작 (README-업로드방법.md)" },
   "changes": [
-    { "at": "2026-07-09 18:15", "text": "현황판 갱신 재개 — 예약작업이 11시간 정체됐던 것 확인 후 수동 갱신, 형이 할 일/AI 진행상황 섹션 신설" },
+    { "at": "2026-07-09 18:45", "text": "🚨 Etsy 상점 Vacation Mode(일시정지) 발견 — 신원/사업자 확인 필요, 신규 주문 불가 상태" },
+    { "at": "2026-07-09 18:15", "text": "현황판 전면 개편 — Etsy·단타자동매매·업로드대기함 통합, 형이 할 일/AI 진행상황 섹션 신설, 자동 새로고침 버그 수정" },
     { "at": "2026-07-09 17:50", "text": "안드로이드 S펜 필기 오버레이 앱 아이디어 조사 완료 — 실행 가능하나 레드오션, 보류 권고 (조사 근거 5개 출처)" },
     { "at": "2026-07-09 11:20", "text": "RestockOS 동기화 실패 알림 기능 배포·검증 완료" },
     { "at": "2026-07-09 10:48", "text": "RestockOS 번들/키트 수요예측 기능 배포·실사용 검증 완료" },
     { "at": "2026-07-09 10:07", "text": "RestockOS 바코드/가격 라벨 인쇄 기능 배포·검증 완료" },
-    { "at": "2026-07-08 20:49", "text": "Upwork에 신규 Invite 1건 접수 — \"PP019 - Mobile AI Product Testers (Korean)\", General Profile, Jul 8 수신(대응은 upwork-manager 몫)" },
-    { "at": "2026-07-08 20:15", "text": "대시보드에 재고 금액($) 시각화 추가 — \"$19,214 to reorder\" 등, 상품 썸네일·판매추세 화살표도 추가. Genie(5.0점) 벤치마크 반영, 프로덕션 확인 완료" },
-    { "at": "2026-07-08 08:15", "text": "Shopify 앱 프로덕션 배포 완료 (Render) + 개발스토어 검증 통과 — 내비게이션·대시보드·4분할 정상 확증" },
-    { "at": "2026-07-08 07:55", "text": "핵심 로직 버그 수정: 'Reorder now' 상태가 영구 공집합이던 문제 → 이제 정상 분류 (프로덕션 확인)" },
+    { "at": "2026-07-08 20:49", "text": "Upwork에 신규 Invite 1건 접수 — \"PP019 - Mobile AI Product Testers (Korean)\", General Profile, Jul 8 수신" },
+    { "at": "2026-07-08 20:15", "text": "대시보드에 재고 금액($) 시각화 추가, 상품 썸네일·판매추세 화살표 추가. 프로덕션 확인 완료" },
+    { "at": "2026-07-08 08:15", "text": "Shopify 앱 프로덕션 배포 완료 (Render) + 개발스토어 검증 통과" },
+    { "at": "2026-07-08 07:55", "text": "핵심 로직 버그 수정: 'Reorder now' 상태가 영구 공집합이던 문제 → 이제 정상 분류" },
     { "at": "2026-07-08 07:46", "text": "GDPR 웹훅 3종·개인정보처리방침·read-only 스코프·유닛테스트 18개 정비 (심사 요건)" },
-    { "at": "2026-07-08 07:30", "text": "GitHub 연결 + Render 무료 배포 파이프라인 구축 (코드 푸시 시 자동 재배포)" },
     { "at": "2026-07-07 12:10", "text": "Upwork 제안 2호 제출 — Brain Gateway AI 오케스트레이션 ($39/hr, $326K 지출 클라이언트)" },
     { "at": "2026-07-06", "text": "크몽 서비스 8건 등록 완료 (심사 대기, 영업일 7일)" }
   ]

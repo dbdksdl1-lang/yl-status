@@ -63,6 +63,29 @@ async function load() {
     { title: 'Gumroad', big: s.gumroad.sales + '건 판매', sub: '상품 ' + s.gumroad.products + '개 · 수익 $' + s.gumroad.revenue },
     { title: 'Shopify 앱', big: s.shopify.stage, sub: s.shopify.note || '' },
   ];
+  if (s.etsy) {
+    cards.push({
+      title: 'Etsy' + (s.etsy.shopStatus && s.etsy.shopStatus.includes('정지') ? ' 🚨' : ''),
+      big: s.etsy.active + '건 활성',
+      sub: '초안 ' + s.etsy.draft + ' · 만료 ' + s.etsy.expired + (s.etsy.shopStatus ? ' · ' + s.etsy.shopStatus : '') + (s.etsy.note ? ' — ' + s.etsy.note : ''),
+    });
+  }
+  if (s.dayTrading) {
+    const dt = s.dayTrading;
+    const sign = dt.pnlPct > 0 ? '+' : '';
+    cards.push({
+      title: '단타 자동매매(모의)',
+      big: sign + dt.pnlPct + '%',
+      sub: '자본 ' + Math.round(dt.capital).toLocaleString() + '원 · 오늘 거래 ' + dt.tradesToday + '건 · ' + (dt.marketRegime || '') + (dt.halted ? ' · ⏸ 정지됨' : ''),
+    });
+  }
+  if (s.uploadBacklog && s.uploadBacklog.count > 0) {
+    cards.push({
+      title: '업로드 대기함',
+      big: s.uploadBacklog.count + '개 완성',
+      sub: s.uploadBacklog.note || '',
+    });
+  }
   document.getElementById('cards').innerHTML = cards.map(c =>
     '<div class="card"><h2>' + c.title + '</h2><div class="big">' + c.big + '</div><div class="sub">' + c.sub + '</div></div>'
   ).join('');
