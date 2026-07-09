@@ -21,9 +21,12 @@
   .sub { font-size: 12px; color: #94A3B8; margin-top: 4px; line-height: 1.5; }
   .money { color: #34D399; }
   .alert { background: #7C2D12; border-radius: 14px; padding: 12px 14px; margin-top: 14px; font-size: 14px; display: none; }
-  .changes { margin-top: 16px; }
-  .changes h2 { font-size: 14px; color: #94A3B8; margin-bottom: 8px; }
-  .changes li { list-style: none; background: #1E293B; border-radius: 10px; padding: 10px 12px; font-size: 13px; margin-bottom: 6px; line-height: 1.5; }
+  .section { margin-top: 16px; }
+  .section h2 { font-size: 14px; color: #94A3B8; margin-bottom: 8px; }
+  .section li { list-style: none; background: #1E293B; border-radius: 10px; padding: 10px 12px; font-size: 13px; margin-bottom: 6px; line-height: 1.5; }
+  .todos li { border-left: 3px solid #F59E0B; }
+  .todos li.low { border-left-color: #475569; }
+  .progress li { border-left: 3px solid #34D399; }
   .changes time { color: #64748B; font-size: 11px; display: block; }
   footer { margin-top: 20px; font-size: 11px; color: #475569; text-align: center; }
 </style>
@@ -32,8 +35,10 @@
 <h1>상품 현황판 <span id="updated">로딩…</span></h1>
 <div class="alert" id="alert"></div>
 <div class="grid" id="cards"></div>
-<div class="changes"><h2>최근 변화</h2><ul id="changes"></ul></div>
-<footer>1시간마다 자동 갱신 · 당겨서 새로고침</footer>
+<div class="section todos" id="todos-section" style="display:none"><h2>🔔 형이 할 일</h2><ul id="todos"></ul></div>
+<div class="section progress" id="progress-section" style="display:none"><h2>⚙️ AI 진행 상황</h2><ul id="progress"></ul></div>
+<div class="section"><h2>최근 변화</h2><ul id="changes"></ul></div>
+<footer>60초마다 자동 갱신 · 당겨서 새로고침</footer>
 <script>
 async function load() {
   const res = await fetch('status.json?t=' + Date.now());
@@ -41,13 +46,15 @@ async function load() {
   const upd = new Date(s.updatedAt);
   const mins = Math.round((Date.now() - upd.getTime()) / 60000);
   const el = document.getElementById('updated');
-  el.textContent = mins < 60 ? mins + '분 전 갱신' : Math.round(mins/60) + '시간 전 갱신';
-  if (mins > 150) el.classList.add('stale');
+  el.textContent = mins < 1 ? '방금 갱신' : mins < 60 ? mins + '분 전 갱신' : Math.round(mins/60) + '시간 전 갱신';
+  el.classList.toggle('stale', mins > 150);
 
+  const a = document.getElementById('alert');
   if (s.alert) {
-    const a = document.getElementById('alert');
     a.style.display = 'block';
     a.textContent = '⚠️ ' + s.alert;
+  } else {
+    a.style.display = 'none';
   }
 
   const cards = [
@@ -60,11 +67,33 @@ async function load() {
     '<div class="card"><h2>' + c.title + '</h2><div class="big">' + c.big + '</div><div class="sub">' + c.sub + '</div></div>'
   ).join('');
 
+  const todosSection = document.getElementById('todos-section');
+  const todos = s.userTodos || [];
+  if (todos.length) {
+    todosSection.style.display = 'block';
+    document.getElementById('todos').innerHTML = todos.map(t =>
+      '<li class="' + (t.priority === 'low' ? 'low' : '') + '">' + (typeof t === 'string' ? t : t.text) + '</li>'
+    ).join('');
+  } else {
+    todosSection.style.display = 'none';
+  }
+
+  const progressSection = document.getElementById('progress-section');
+  const progress = s.aiInProgress || [];
+  if (progress.length) {
+    progressSection.style.display = 'block';
+    document.getElementById('progress').innerHTML = progress.map(p => '<li>' + p + '</li>').join('');
+  } else {
+    progressSection.style.display = 'none';
+  }
+
   document.getElementById('changes').innerHTML = (s.changes || []).slice(0, 15).map(c =>
     '<li><time>' + c.at + '</time>' + c.text + '</li>'
   ).join('') || '<li>아직 기록된 변화가 없습니다</li>';
 }
 load().catch(e => document.getElementById('updated').textContent = '로드 실패');
+setInterval(() => load().catch(() => {}), 60000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) load().catch(() => {}); });
 </script>
 </body>
 </html>
