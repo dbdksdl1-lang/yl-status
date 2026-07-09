@@ -2,6 +2,7 @@
   "updatedAt": "2026-07-09T18:45:00+09:00",
   "alert": "🚨 Etsy 상점이 Vacation Mode로 일시정지됨 — 신원/사업자 정보 확인 필요, 지금 신규 주문 불가 (형 본인 인증이라 AI 대행 불가). 그 외 RestockOS 심사 제출 체크리스트도 대기 중",
   "userTodos": [
+    { "text": "🔑 Upwork 로그인 — 재부팅으로 세션 로그아웃됨. Chrome에서 로그인만 해주면 AI가 소형 안건 3건 제안 즉시 제출 가능(초안 작성 완료)", "priority": "high" },
     { "text": "🚨 Etsy 상점 확인/인증 — Etsy 설정에서 '판매자/사업자 정보 확인' 요청 처리해야 상점 정지 풀림 (신원 확인이라 AI가 대신 못 함)", "priority": "high" },
     { "text": "RestockOS 심사 제출: Partners→restockos→배포→제출 관리 → 언어선택(영어)/보호된 고객데이터(사용 안 함 체크)/자동검사 실행/개인맞춤 요구사항 선택 → 마지막 '검토를 위해 제출' 클릭. 상세 절차는 STATUS.md 맨 위 참고", "priority": "high" },
     { "text": "업로드 대기함(_업로드_대기함) 완성 상품 14개 — 상품당 1~2분 드래그만 하면 바로 판매 시작 가능(README-업로드방법.md 참고), 시간 날 때 몰아서", "priority": "high" },
